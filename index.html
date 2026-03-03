@@ -1,273 +1,467 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>PROJECT DEMO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chamakura Pooja | Portfolio</title>
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
+<link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            background-color: aqua;
-        }
+<style>
 
-        h1 {
-            color: #333;
-            text-align: center;
-        }
+:root{
+--bg-color:#081b29;
+--text-color:#ededed;
+--main-color:#00abf0;
+--nav-link-color:#00abf0;
+--nav-hover-color:#ffffff;
+}
 
-        .navbar {
-            background-color: #007BFF;
-            width: 100%;
-            padding: 15px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-        }
 
-        .navbar a {
-            color: white;
-            margin: 0 25px;
-            font-size: 18px;
-            text-decoration: none;
-            font-weight: bold;
-        }
 
-        .navbar a:hover {
-            color: #ffd700;
-        }
+.light-mode{
+--bg-color:#ffffff;
+--text-color:#081b29;
+--main-color:#0077b6;
+--nav-link-color:#0077b6;
+--nav-hover-color:#000000;
+}
 
-        section {
-            width: 100%;
-            max-width: 800px;
-            padding: 40px 20px;
-            text-align: center;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI;
+}
 
-        .home-section {
-            min-height: 100vh;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-        }
+body{
+background:var(--bg-color);
+color:var(--text-color);
+transition:0.4s;
+}
 
-        form {
-            max-width: 600px;
-            width: 100%;
-            padding: 30px;
-            border: #007BFF 1px solid;
-            border-radius: 20px;
-            margin: auto;
-            background: white;
-        }
+header{
+position:fixed;
+background:var(--bg-color);
+width:100%;
+padding:20px 10%;
+background:rgba(8,27,41,0.9);
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:100;
+}
 
-        label {
-            font-weight: bold;
-        }
 
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0 18px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-        }
 
-        textarea {
-            resize: none;
-        }
 
-        button {
-            background-color: #007BFF;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+.logo{
+color:blue;   /* or use #00abf0 if you want your theme blue */
+font-size:1.5rem;
+text-decoration:none;
+}
 
-        button:hover {
-            background-color: #0056b3;
-        }
 
-        .success {
-            color: green;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-    </style>
+.navbar a{
+margin-left:25px;
+color:var(--nav-link-color);
+text-decoration:none;
+transition:0.3s;
+}
+
+.navbar a:hover{
+color:var(--nav-hover-color);
+}
+
+
+
+#toggle{
+padding:6px 12px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+background:var(--main-color);
+color:white;
+font-size:16px;
+}
+
+section{
+min-height:100vh;
+padding:100px 10%;
+}
+
+.home{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.home-img img{
+width:250px;
+height:250px;
+border-radius:50%;
+border:4px solid var(--main-color);
+object-fit:cover;
+}
+/*Circular Skills*/
+.skills-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+.skill{
+    position: relative;
+    width: 160px;
+    height: 160px;
+}
+
+.skill svg{
+    width: 160px;
+    height: 160px;
+    transform: rotate(-90deg);
+}
+
+.skill circle{
+    fill: none;
+    stroke-width: 12;
+    stroke: #1f3b4d;
+}
+.skill circle.progress{
+    stroke: var(--main-color);
+    stroke-dashoffset: 440;
+    transition: stroke-dashoffset 1.5s ease;
+}
+
+.skill .number{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.skill.number h3{
+    font-size: 22px;
+}
+
+
+/* Contact */
+
+.contact-form{
+max-width:400px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.contact-form input,
+.contact-form textarea{
+padding:10px;
+border:none;
+border-radius:5px;
+background:#1f3b4d;
+color:white;
+}
+
+.light-mode .contact-form input,
+.light-mode .contact-form textarea{
+background:#ddd;
+color:black;
+}
+
+.contact-form button{
+padding:10px;
+background:var(--main-color);
+border:none;
+cursor:pointer;
+font-weight:bold;
+}
+#projects img{
+width:200px;
+display:block;
+margin-top:15px;
+margin-bottom:40px;
+}
+
+/* Certificates */
+
+.certificates-container{
+display:flex;
+flex-wrap:wrap;
+gap:30px;
+margin-top:30px;
+}
+
+.certificate{
+background:#1f3b4d;
+padding:20px;
+border-radius:10px;
+width:250px;
+transition:0.3s;
+}
+
+.light-mode .certificate{
+background:#ddd;
+color:black;
+}
+
+.certificate:hover{
+transform:translateY(-8px);
+}
+
+.certificate img{
+width:150px;
+cursor:zoom-in;
+transition:0.3s;
+}
+
+.certificate img:hover{
+transform:scale(1.05);
+}
+
+/* Popup */
+
+#popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+#popup img{
+max-width:80%;
+max-height:80%;
+border-radius:10px;
+}
+
+#popup span{
+position:absolute;
+top:30px;
+right:40px;
+font-size:35px;
+color:white;
+cursor:pointer;
+}
+
+</style>
 </head>
 
 <body>
 
-<h1>Welcome to Demo</h1>
+<header>
+<a href="#" class="logo">Chamakura Pooja</a>
 
-<div class="navbar">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="#login">Login</a>
-    <a href="#" onclick="logout()">Logout</a>
+<nav class="navbar">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#certificates">Certificates</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<button id="toggle">🌙</button>
+</header>
+
+<!-- HOME -->
+<section class="home" id="home">
+<div>
+<h1>Hi, I'm Chamakura Pooja</h1>
+<h3 style="color:var(--main-color)">Frontend Developer</h3>
+<p>I build modern responsive websites.</p>
 </div>
 
-<section id="home" class="home-section">
-    <h1>Project Registration</h1>
-
-    <form id="registrationForm">
-
-        <label>Student Name:</label>
-        <input type="text" id="student_name" required>
-
-        <label>Father Name:</label>
-        <input type="text" id="father_name" required>
-
-        <label>Mother Name:</label>
-        <input type="text" id="mother_name" required>
-
-        <label>Student ID:</label>
-        <input type="text" id="student_id" required>
-
-        <label>Project Title:</label>
-        <input type="text" id="project_title" required>
-
-        <label>College Name:</label>
-        <input type="text" id="college_name" required>
-
-        <label>Contact:</label>
-        <input type="text" id="contact_number" required>
-
-        <label>Email:</label>
-        <input type="email" id="email" required>
-
-        <label>Upload Project Documentation:</label>
-        <input type="file" id="project_doc" accept=".pdf,.doc,.docx" required>
-
-        <button type="submit">Register</button>
-
-        <p id="registerMessage" class="success"></p>
-    </form>
+<div class="home-img">
+<img src="pooja.jpeg">
+</div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
-    <h2>About</h2>
-    <p>This demo website allows students to submit their project details.</p>
+<h2>About Me</h2>
+<p>Enthusiastic and quick-learning Engineering student with a passion for web development and problem-solving.seeking to apply technical skills in real-time projects and contribute meaningfully to a growth-focused organization</p>
+</section>
+<!--projects-->
+<section id="projects">
+<h1>Project</h1>
+<h2>Vacci Care Real-Time </h2>
+<p>Developed a web-based solution to assist parents in managing their children's vaccination schedules and receiving timely alerts.</p>
+<h3>Tools & Technologies used</h3>
+<p>HTML,CSS,JavaScript,PHP,MySQL,PHPMailer,Firebase(notifications),SMS/Email APLs</p>
+
+
+<img src="https://cdn.cdnparenting.com/articles/2020/06/23160756/599228528.webp" alt="vacci care">
+
+
+
+<h2>AI-Based Chess Game</h2>
+<p>Developed an interactive web application that enables users to play chess against an AI opponent with real-time more validation.</p>
+<h3>Tools used</h3>
+<p>Python,Flask Framework,HTML,CSS,JavaScript,AJAX,SQLite,Custom Chess Engine,Minimax Alogithm(AI Logic),python-chess(optional),Stockfish(future enhancement)</p>
+
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXhg2XWgwDz8u74f2jO6qt__SWTmt6RofWSw&s" alt="chess game">
 </section>
 
+<!-- CERTIFICATES -->
+<section id="certificates">
+<h2>Certificates</h2>
+
+<div class="certificates-container">
+
+<div class="certificate">
+<h3>Artificial Intelligence Fundamentals</h3>
+<p>AI real life applications.</p>
+<img src="ai.jpg" onclick="openPopup(this.src)">
+</div>
+
+<div class="certificate">
+<h3>Network Security</h3>
+<p>Encryption and data protection.</p>
+<img src="infosys.jpg" onclick="openPopup(this.src)">
+</div>
+
+<div class="certificate">
+<h3>Full Stack Development</h3>
+<p>HTML, CSS, JavaScript and responsive design.</p>
+<img src="full stack dev.jpeg" onclick="openPopup(this.src)">
+</div>
+
+</div>
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+<h2>Skills</h2>
+
+<div class="skills-container">
+
+<div class="skill">
+<svg>
+<circle cx="80" cy="80" r="70"></circle>
+<circle cx="80" cy="80" r="70" class="progress" data-percent="90"></circle>
+</svg>
+<div class="number">
+<h3>90%</h3>
+<p>HTML</p>
+</div>
+</div>
+
+<div class="skill">
+<svg>
+<circle cx="80" cy="80" r="70"></circle>
+<circle cx="80" cy="80" r="70" class="progress" data-percent="85"></circle>
+</svg>
+<div class="number">
+<h3>85%</h3>
+<p>CSS</p>
+</div>
+</div>
+
+<div class="skill">
+<svg>
+<circle cx="80" cy="80" r="70"></circle>
+<circle cx="80" cy="80" r="70" class="progress" data-percent="70"></circle>
+</svg>
+<div class="number">
+<h3>70%</h3>
+<p>JavaScript</p>
+</div>
+</div>
+
+<div class="skill">
+<svg>
+<circle cx="80" cy="80" r="70"></circle>
+<circle cx="80" cy="80" r="70" class="progress" data-percent="75"></circle>
+</svg>
+<div class="number">
+<h3>75%</h3>
+<p>Python</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
-    <h2>Contact Me</h2>
-    <form id="contactForm">
-        <input type="text" id="contactName" placeholder="Name" required>
-        <input type="email" id="contactEmail" placeholder="Email" required>
-        <textarea rows="5" id="contactMessage" placeholder="Message" required></textarea>
-        <button type="submit">Send Message</button>
-        <p id="contactSuccess" class="success"></p>
-    </form>
+<h2>Contact Me</h2>
+
+<form class="contact-form">
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<textarea rows="5" placeholder="Message"></textarea>
+<button type="submit">Send Message</button>
+</form>
+
 </section>
 
-<section id="login">
-    <h2>Login</h2>
-    <form id="loginForm">
-        <input type="email" id="loginEmail" placeholder="Enter email" required>
-        <input type="password" id="loginPassword" placeholder="Enter password" required>
-        <button type="submit">Login</button>
-        <p id="loginMessage" class="success"></p>
-    </form>
-</section>
+<!-- POPUP -->
+<div id="popup">
+<span onclick="closePopup()">&times;</span>
+<img id="popup-img">
+</div>
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+/* Dark Light Toggle */
+const toggleBtn=document.getElementById("toggle");
 
-let homeSection = document.getElementById("home");
-let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-
-if (isLoggedIn) {
-    homeSection.style.display = "flex";
+if(localStorage.getItem("mode")=="light"){
+document.body.classList.add("light-mode");
+toggleBtn.innerHTML="☀️";
 }
 
+toggleBtn.onclick=()=>{
+document.body.classList.toggle("light-mode");
 
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+if(document.body.classList.contains("light-mode")){
+localStorage.setItem("mode","light");
+toggleBtn.innerHTML="☀️";
+}else{
+localStorage.setItem("mode","dark");
+toggleBtn.innerHTML="🌙";
+}
+};
 
-    let email = document.getElementById("loginEmail").value;
-    let password = document.getElementById("loginPassword").value;
-
-    if (email === "admin@gmail.com" && password === "1234") {
-        localStorage.setItem("isLoggedIn", "true");
-
-        document.getElementById("loginMessage").textContent =
-            "Login Successful! You can now submit your project.";
-
-        homeSection.style.display = "flex";
-        location.hash = "#home";
-    } else {
-        document.getElementById("loginMessage").textContent =
-            "Invalid login details.";
-    }
-
-    document.getElementById("loginForm").reset();
-});
-
-
-window.logout = function() {
-    localStorage.removeItem("isLoggedIn");
-    alert("Logged out successfully");
-    location.reload();
+/* Popup Functions */
+function openPopup(src){
+document.getElementById("popup").style.display="flex";
+document.getElementById("popup-img").src=src;
 }
 
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
 
-document.getElementById("registrationForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+/* Circular Skills Animation */
 
-    if (localStorage.getItem("isLoggedIn") !== "true") {
-        alert("Please login first!");
-        return;
-    }
+const circles = document.querySelectorAll(".progress");
 
-    let fileInput = document.getElementById("project_doc");
-    let fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "";
+circles.forEach(circle => {
+    const percent = circle.getAttribute("data-percent");
+    const radius = circle.r.baseVal.value;
+    const circumference = 2 * Math.PI * radius;
 
-    const student = {
-        name: document.getElementById("student_name").value,
-        father: document.getElementById("father_name").value,
-        mother: document.getElementById("mother_name").value,
-        id: document.getElementById("student_id").value,
-        project: document.getElementById("project_title").value,
-        college: document.getElementById("college_name").value,
-        contact: document.getElementById("contact_number").value,
-        email: document.getElementById("email").value,
-        document: fileName
-    };
+    circle.style.strokeDasharray = circumference;
 
-    localStorage.setItem("studentData", JSON.stringify(student));
+    const offset = circumference - (percent / 100) * circumference;
 
-    document.getElementById("registerMessage").textContent =
-        "Project submitted successfully! File uploaded: " + fileName;
-
-    document.getElementById("registrationForm").reset();
+    setTimeout(() => {
+        circle.style.strokeDashoffset = offset;
+    }, 500);
 });
 
-
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    document.getElementById("contactSuccess").textContent =
-        "Message sent successfully!";
-
-    document.getElementById("contactForm").reset();
-});
-
-});
 
 </script>
 
